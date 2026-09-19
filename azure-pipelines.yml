@@ -1,0 +1,26 @@
+# Azure DevOps CI Pipeline
+
+trigger:
+- main
+
+pool:
+  vmImage: ubuntu-latest
+
+steps:
+- task: UseNode@1
+  inputs:
+    version: '22.x'
+  displayName: 'Install Node.js'
+
+- script: |
+    corepack enable
+    corepack prepare pnpm@12.3.4 --activate
+  displayName: 'Setup pnpm'
+
+- script: |
+    pnpm install --frozen-lockfile
+  displayName: 'Install dependencies'
+
+- script: |
+    pnpm build
+  displayName: 'Build Next.js application'
