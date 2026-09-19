@@ -3,3 +3,11 @@ pmOnFail: ignore
 minimumReleaseAgeExclude:
   - '@next/*'
   - next
+
+supportedArchitectures:
+  os:
+    - linux
+  cpu:
+    - x64
+  libc:
+    - musl
